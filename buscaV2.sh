@@ -3,8 +3,6 @@
 ARQCOLEGAS="/home/ubuntu/cursoscripts/arquivos-importantes/listacolegas.txt"
 echo "==============Script de busca===================="
 echo ""
-echo "Por favor, informe o seu primeiro nome: "
-read NOME
-echo "O nome completo do aluno é: $(grep "$NOME" $ARQCOLEGAS)"
+echo "O nome completo do aluno é: $(grep "$1" $ARQCOLEGAS)"
 echo ""
 echo "Fim do script"
