@@ -165,13 +165,3 @@ case $VAL in
 		echo "$CALCULO3 $OPERACAO $VALOR5 = $RESULTADO"
 		;;
 esac
-
-
-
-
-
-
-
-
-
-
