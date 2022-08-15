@@ -122,50 +122,33 @@ e () {
 		exit 0
 	elif [ "$VAR1" -eq 2 ]
 	then
-		echo "Impossivel determinar o padrão de data."
-		echo "1 - BR (DD/MM/YYYY)"
-		echo "2 - US (MM/DD/YYYY)"
-		read -n1 -p "Informe o formato (1 ou 2): " FORMATO
-		echo ""
-		case $FORMATO in
-			1)
-				casemes $VAL2
-				echo "$VAL1 de $MES de $ANO"
-				exit 0
-				;;
-			2)
-				casemes $VAL1
-				echo "$VAL2 de $MES de $ANO"
-				exit 0
-				;;
-			*)
-				echo "Opção invalida!"
-				exit 1
-				;;
-		esac
+		local FORMATO=0
+		until [ "$FORMATO" = 1 -o "$FORMATO" = 2 ]
+		do
+			echo "Impossivel determinar o padrão de data."
+			echo "1 - BR (DD/MM/YYYY)"
+			echo "2 - US (MM/DD/YYYY)"
+			read -p "Informe o formato (1 ou 2): " FORMATO
+			echo ""
+			case $FORMATO in
+				1)
+					casemes $VAL2
+					echo "$VAL1 de $MES de $ANO"
+					;;
+				2)
+					casemes $VAL1
+					echo "$VAL2 de $MES de $ANO"
+					;;
+				*)
+					echo "Opção invalida!"
+					;;
+			esac
+		done
 	fi
-	
-}
+}	
+##################################################
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo ""
 case $1 in
 	-f)
 		f
@@ -179,7 +162,10 @@ case $1 in
 	-e)
 		e
 		;;
+	--help)
+		helpme
+		;;
 	*)
-		echo "erro"
+		echo "Uso indevido! Utilize $0 --help"
 		;;
 esac
